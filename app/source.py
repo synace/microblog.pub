@@ -89,7 +89,7 @@ class CustomRenderer(HTMLRenderer):
 
         self.tags.append(dict(type="Mention", href=actor.ap_id, name=mention))
 
-        link = f'<span class="h-card"><a href="{actor.url}" class="u-url mention">@{actor.handle}</a></span>{suffix}'  # noqa: E501
+        link = f'<span class="h-card"><a href="{actor.url}" class="u-url mention">{actor.handle}</a></span>{suffix}'  # noqa: E501
         return link
 
     def render_hashtag(self, token: Hashtag) -> str:
