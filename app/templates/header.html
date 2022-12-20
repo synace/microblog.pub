@@ -40,7 +40,8 @@
         {% if NAVBAR_ITEMS.INDEX_NAVBAR_ITEM %}
         <li>{{ navbar_item_link(NAVBAR_ITEMS.INDEX_NAVBAR_ITEM) }}</li>
         {% endif %}
-        <li>{{ header_link("index", "Notes") }}</li>
+        <li>{{ header_link("index", "Posts") }}</li>
+        <li>{{ header_link("with_replies", "Posts & Replies") }}</li>
         {% if articles_count %}
             <li>{{ header_link("articles", "Articles") }}</li>
         {% endif %}
