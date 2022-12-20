@@ -108,6 +108,7 @@ class Config(pydantic.BaseModel):
     blocked_servers: list[_BlockedServer] = []
     custom_footer: str | None = None
     emoji: str | None = None
+    emoji_template: str | None = None
     also_known_as: str | None = None
 
     hides_followers: bool = False
@@ -208,6 +209,9 @@ if CONFIG.emoji:
 EMOJI_TPL = (
     '<img src="{base_url}/static/twemoji/{filename}.svg" alt="{raw}" class="emoji">'
 )
+if (CONFIG.emoji_template):
+    EMOJI_TPL = CONFIG.emoji_template
+
 
 _load_emojis(ROOT_DIR, BASE_URL)
 

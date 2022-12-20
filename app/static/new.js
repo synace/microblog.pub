@@ -54,3 +54,9 @@ files.addEventListener("change", function(e) {
 const end = ta.value.length;
 ta.setSelectionRange(end, end);
 ta.focus();
+
+// add picker
+var s = document.createElement("script");
+s.type = "module";
+s.src = "/static/picmo.js";
+document.head.appendChild(s);

@@ -143,7 +143,8 @@ class CustomMiddleware:
                 headers["content-security-policy"] = (
                     (
                         f"default-src 'self'; "
-                        f"style-src 'self' 'sha256-{HIGHLIGHT_CSS_HASH}'; "
+                        f"style-src 'self' sha256-47DEQpj8HBSa+/TImW+5JCeuQeRkm5NMpJWZG3hSuFU=' 'sha256-PJSiCq4/Dzx0akp15kKgOYDVJahxZD7gdP6pnq+UcqU=' 'sha256-{HIGHLIGHT_CSS_HASH}'; "
+                        f"script-src 'self' https://cdn.jsdelivr.net/npm/picmo@5.7.2/dist/index.js https://cdn.jsdelivr.net/npm/emojibase-data@7.0.1/en/data.json https://cdn.jsdelivr.net/npm/emojibase-data@7.0.1/en/messages.json; "
                         f"frame-ancestors 'none'; base-uri 'self'; form-action 'self';"
                     )
                     if not config.CUSTOM_CONTENT_SECURITY_POLICY
