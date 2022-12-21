@@ -34,24 +34,29 @@
 <a href="{{ navbar_item[0] }}" {% if BASE_URL + request.url.path == url_for %}class="active"{% endif %}>{{ navbar_item[1] }}</a>
 {% endmacro %}
 
+
 <div class="public-top-menu">
+
+<dl class="follows">
+  {% if not HIDES_FOLLOWERS or is_admin %}
+  <dt>{{ header_link("followers", "Followers") }}</dt><dd class="counter">{{ followers_count }}</dd>
+  {% endif %}
+  {% if not HIDES_FOLLOWING or is_admin %}
+  <dt>{{ header_link("following", "Following") }}</dt><dd class="counter">{{ following_count }}</dd>
+  {% endif %}
+  <dt class="follow">{{ header_link("get_remote_follow", "Follow") }}</dt>
+</dl>
+
 <nav class="flexbox">
     <ul>
         {% if NAVBAR_ITEMS.INDEX_NAVBAR_ITEM %}
         <li>{{ navbar_item_link(NAVBAR_ITEMS.INDEX_NAVBAR_ITEM) }}</li>
         {% endif %}
         <li>{{ header_link("index", "Posts") }}</li>
-        <li>{{ header_link("with_replies", "Posts & Replies") }}</li>
+        <li>{{ header_link("with_replies", "Replies") }}</li>
         {% if articles_count %}
             <li>{{ header_link("articles", "Articles") }}</li>
         {% endif %}
-        {% if not HIDES_FOLLOWERS or is_admin %}
-        <li>{{ header_link("followers", "Followers") }} <span class="counter">{{ followers_count }}</span></li>
-        {% endif %}
-        {% if not HIDES_FOLLOWING or is_admin %}
-        <li>{{ header_link("following", "Following") }} <span class="counter">{{ following_count }}</span></li>
-        {% endif %}
-        <li>{{ header_link("get_remote_follow", "Remote follow") }}</li>
         {% for navbar_item in NAVBAR_ITEMS.EXTRA_NAVBAR_ITEMS %}
             {{ navbar_item_link(navbar_item) }}
         {% endfor %}
