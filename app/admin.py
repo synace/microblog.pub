@@ -186,11 +186,13 @@ async def admin_new(
         if not in_reply_to_object:
             raise ValueError(f"Unknown object {in_reply_to=}")
         if in_reply_to_object.actor.ap_id != LOCAL_ACTOR.ap_id:
-            content += f"{in_reply_to_object.actor.handle} "
+            handleWithPrefix = in_reply_to_object.actor.handle if in_reply_to_object.actor.handle.startswith('@') else "@" + in_reply_to_object.actor.handle
+            content += f"{handleWithPrefix} "
         for tag in in_reply_to_object.tags:
             if tag.get("type") == "Mention" and tag["name"] != LOCAL_ACTOR.handle:
                 mentioned_actor = await fetch_actor(db_session, tag["href"])
-                content += f"{mentioned_actor.handle} "
+                handleWithPrefix = mentioned_actor.handle if mentioned_actor.handle.startswith('@') else "@" + mentioned_actor.handle
+                content += f"{handleWithPrefix} "
 
         # Copy the content warning if any
         if in_reply_to_object.summary:

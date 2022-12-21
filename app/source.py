@@ -88,8 +88,9 @@ class CustomRenderer(HTMLRenderer):
             return mention
 
         self.tags.append(dict(type="Mention", href=actor.ap_id, name=mention))
+        handleWithPrefix = actor.handle if actor.handle.startswith('@') else "@" + actor.handle
 
-        link = f'<span class="h-card"><a href="{actor.url}" class="u-url mention">{actor.handle}</a></span>{suffix}'  # noqa: E501
+        link = f'<span class="h-card"><a href="{actor.url}" class="u-url mention">{handleWithPrefix}</a></span>{suffix}'  # noqa: E501
         return link
 
     def render_hashtag(self, token: Hashtag) -> str:
